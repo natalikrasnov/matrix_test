@@ -17,7 +17,7 @@ public class convert {
         this.listType = listType;
     }
 
-    public  <T, listType> List<listType>  convertArrayToList(Array data){
+    public  <T, listType> List<listType>  convertArrayToList(Object[] data){
         return gson.fromJson(String.valueOf(data), listType);
     }
 

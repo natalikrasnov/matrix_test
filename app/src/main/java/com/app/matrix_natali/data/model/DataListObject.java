@@ -57,4 +57,12 @@ public class DataListObject {
     public void setDataListAddr(String dataListAddr) {
         DataListAddr = dataListAddr;
     }
+
+    public String getSTitle() {
+        return STitle;
+    }
+
+    public void setSTitle(String STitle) {
+        this.STitle = STitle;
+    }
 }

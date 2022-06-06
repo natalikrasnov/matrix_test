@@ -64,11 +64,11 @@ public class DataListObjectListDialogFragment extends BottomSheetDialogFragment 
 
     private class ViewHolder extends RecyclerView.ViewHolder {
 
-      //  final TextView text;
+        final TextView text;
 
         ViewHolder(FragmentItemListDialogListDialogItemBinding binding) {
             super(binding.getRoot());
-           /// text = binding.text;
+            text = binding.title;
         }
 
     }
@@ -91,7 +91,7 @@ public class DataListObjectListDialogFragment extends BottomSheetDialogFragment 
 
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
-          //  holder.text.setText(String.valueOf(position));
+            holder.text.setText(String.valueOf(position));
         }
 
         @Override

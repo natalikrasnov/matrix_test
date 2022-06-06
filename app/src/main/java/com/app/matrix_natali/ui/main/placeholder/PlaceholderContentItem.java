@@ -11,7 +11,7 @@ import java.util.Map;
  * <p>
  * TODO: Replace all uses of this class before publishing your app.
  */
-public class PlaceholderContent {
+public class PlaceholderContentItem {
 
     /**
      * An array of sample (placeholder) items.
@@ -23,7 +23,7 @@ public class PlaceholderContent {
      */
     public static final Map<String, PlaceholderItem> ITEM_MAP = new HashMap<String, PlaceholderItem>();
 
-    private static final int COUNT = 5;
+    private static final int COUNT = ITEMS.size();
 
     static {
         // Add some sample items.
@@ -38,7 +38,7 @@ public class PlaceholderContent {
     }
 
     private static PlaceholderItem createPlaceholderItem(int position) {
-        return new PlaceholderItem(String.valueOf(position), "Item " + position, makeDetails(position));
+        return new PlaceholderItem(String.valueOf(position), "Item " + position, makeDetails(position), "");
     }
 
     private static String makeDetails(int position) {
@@ -55,18 +55,21 @@ public class PlaceholderContent {
      */
     public static class PlaceholderItem {
         public final String id;
-        public final String content;
-        public final String details;
+        public final String catId;
+        public final String title;
+        public final String Stitle;
 
-        public PlaceholderItem(String id, String content, String details) {
+        public PlaceholderItem(String id, String catId, String title, String Stitle) {
             this.id = id;
-            this.content = content;
-            this.details = details;
+            this.catId = catId;
+            this.title = title;
+            this.Stitle = Stitle;
         }
 
         @Override
         public String toString() {
-            return content;
+            return  "<b>" + title + " - </b> " +Stitle;
+            //mytextview.setText(Html.fromHtml(sourceString));
         }
     }
 }
