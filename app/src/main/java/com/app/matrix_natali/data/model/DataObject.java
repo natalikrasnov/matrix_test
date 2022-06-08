@@ -1,47 +1,61 @@
 package com.app.matrix_natali.data.model;
 
-import com.app.matrix_natali.utils.convert;
-import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Array;
-import java.util.List;
-import java.lang.reflect.Type;
-
 public class DataObject {
 
-    private category[] DataListCat;
-    private List<DataListObject> DataObject; //DataListObject
+    private DataObjectO DataObject; //DataListObject
 
-    private final Type listType;
-
-    public DataObject(Object[] DataListCat,Object DataObject) {
-        listType = new TypeToken<List<DataListObject>>(){}.getType();
-
-        this.DataListCat = (category[]) DataListCat;
-        this.DataObject = (new convert(listType)).convertJsonToList(DataObject);
+    public DataObject(Object DataObject) {
+        this.DataObject = (DataObjectO) DataObject;
     }
 
-    public List<DataListObject> getDataObject() {
+    public DataObjectO getDataObject() {
         return DataObject;
     }
 
-    public void setDataObject(List<DataListObject> dataObject) {
-        DataObject = dataObject;
+    public void setDataObject(DataObjectO DataObject) {
+        this.DataObject = DataObject;
     }
 
-    public void setDataObject(Object dataObject) {
-        this.DataObject = (new convert(listType)).convertJsonToList(dataObject);
+    public void setListDataListObject(DataListObject[] ListDataListObject) {
+        this.DataObject.setList(ListDataListObject);
     }
 
-    public void setDataObject(Object[] dataObject) {
-        this.DataObject = (new convert(listType)).convertArrayToList(dataObject);
+    public DataListObject[] getListDataListObject() {
+        return this.DataObject.getList();
     }
 
-    public category[] getDataListCat() {
-        return DataListCat;
+    public Category[] getDataListCat() {
+        return this.getDataObject().DataListCat;
     }
 
     public void setDataListCat(Object[] dataListCat) {
-        DataListCat = (category[]) dataListCat;
+        this.DataObject.setDataListCat((Category[]) dataListCat);
+    }
+
+    private class DataObjectO {
+
+        private DataListObject[] DataListObject;
+        private Category[] DataListCat;//DataListCat
+
+
+        public DataObjectO(Object[] list){
+            this.DataListObject = (DataListObject[]) list;
+        }
+
+        public DataListObject[] getList() {
+            return DataListObject;
+        }
+
+        public void setList(DataListObject[] list) {
+            this.DataListObject = list;
+        }
+
+        public void setDataListCat(Category[] dataListCat) {
+            DataListCat = dataListCat;
+        }
+
+        public Category[] getDataListCat() {
+            return DataListCat;
+        }
     }
 }

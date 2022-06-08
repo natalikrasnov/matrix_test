@@ -1,5 +1,8 @@
 package com.app.matrix_natali.ui.main.placeholder;
 
+import com.app.matrix_natali.data.model.DataListObject;
+import com.app.matrix_natali.data.model.DataObjectCategory;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,27 +21,28 @@ public class PlaceholderContent {
      */
     public static final List<PlaceholderItem> ITEMS = new ArrayList<PlaceholderItem>();
 
+
+    public static void setItems(DataObjectCategory[] dataObj){
+        // Add some sample items.
+        for (int i = 1; i <= dataObj.length; i++) {
+            addItem(createPlaceholderItem(dataObj[i]));
+        }
+    }
+
     /**
      * A map of sample (placeholder) items, by ID.
      */
     public static final Map<String, PlaceholderItem> ITEM_MAP = new HashMap<String, PlaceholderItem>();
 
-    private static final int COUNT = 5;
-
-    static {
-        // Add some sample items.
-        for (int i = 1; i <= COUNT; i++) {
-            addItem(createPlaceholderItem(i));
-        }
-    }
+    private static final int COUNT = ITEMS.size();
 
     private static void addItem(PlaceholderItem item) {
         ITEMS.add(item);
-        ITEM_MAP.put(item.id, item);
+        ITEM_MAP.put(item.title, item);
     }
 
-    private static PlaceholderItem createPlaceholderItem(int position) {
-        return new PlaceholderItem(String.valueOf(position), "Item " + position, makeDetails(position));
+    private static PlaceholderItem createPlaceholderItem(DataObjectCategory obj) {
+        return new PlaceholderItem(obj.getCategory().getCTitle(), obj.getDataListCat());
     }
 
     private static String makeDetails(int position) {
@@ -54,19 +58,17 @@ public class PlaceholderContent {
      * A placeholder item representing a piece of content.
      */
     public static class PlaceholderItem {
-        public final String id;
-        public final String content;
-        public final String details;
+        public final String title;
+        public final DataListObject[] content;
 
-        public PlaceholderItem(String id, String content, String details) {
-            this.id = id;
+        public PlaceholderItem(String title, DataListObject[] content) {
+            this.title = title;
             this.content = content;
-            this.details = details;
         }
 
         @Override
         public String toString() {
-            return content;
+            return title;
         }
     }
 }

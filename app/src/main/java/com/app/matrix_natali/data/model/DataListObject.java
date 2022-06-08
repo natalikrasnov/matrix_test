@@ -2,28 +2,46 @@ package com.app.matrix_natali.data.model;
 
 public class DataListObject {
 
-    private int catId;
+//    {
+//        "CatId": 1,
+//            "Title": "טרקטורוני היער והגולן",
+//            "STitle": "הנחות ליחיד",
+//            "Imag": "https://mobile.leumi-card.co.il/ImgHandler/GetImag.ashx?origpath=/he-il/Benefits/BenefitsPlus/Atractions/PublishingImags/arnak/TractoroniHayaar/טרקטרוני_הגולן_big.jpg&format=webp&type=b",
+//            "Id": 101069,
+//            "DataListAddr": [
+//        {
+//            "Addr": "רמת נפתלי",
+//                "DAd": "מושב רמת נפתלי"
+//        }
+//        ]
+//    }
+    
+    private int CatId;
     private String Title;
     private String STitle;  //כותרת משנה
-    private String image;   //url
-    private int id;
-    private String DataListAddr;
+    private String Imag;   //url
+    private int Id;
+    private Address[] DataListAddr;
 
-    public DataListObject(int catId, String title,String stitle, String image,int id,String DataListAddr) {
-        this.catId = catId;
+    public DataListObject(int CatId, String title,String stitle, String Imag,int id,Object[] DataListAddr) {
+        this.CatId = CatId;
         this.Title = title;
         this.STitle = stitle;
-        this.image = image;
-        this.id = id;
-        this.DataListAddr = DataListAddr;
+        this.Imag = Imag;
+        this.Id = id;
+        this.DataListAddr = (Address[]) DataListAddr;
+    }
+
+    public DataListObject(DataListObject oldObj){
+        this(oldObj.getCatId(), oldObj.getTitle(), oldObj.getSTitle(), oldObj.getImag(), oldObj.getId(), oldObj.getDataListAddr());
     }
 
     public int getCatId() {
-        return catId;
+        return CatId;
     }
 
-    public void setCatId(int catId) {
-        this.catId = catId;
+    public void setCatId(int CatId) {
+        this.CatId = CatId;
     }
 
     public String getTitle() {
@@ -34,27 +52,27 @@ public class DataListObject {
         Title = title;
     }
 
-    public String getImage() {
-        return image;
+    public String getImag() {
+        return Imag;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImag(String Imag) {
+        this.Imag = Imag;
     }
 
     public int getId() {
-        return id;
+        return Id;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.Id = id;
     }
 
-    public String getDataListAddr() {
+    public Address[] getDataListAddr() {
         return DataListAddr;
     }
 
-    public void setDataListAddr(String dataListAddr) {
+    public void setDataListAddr(Address[] dataListAddr) {
         DataListAddr = dataListAddr;
     }
 

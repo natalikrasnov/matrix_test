@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.app.matrix_natali.R;
+import com.app.matrix_natali.data.model.DataObjectCategory;
 import com.app.matrix_natali.ui.main.placeholder.PlaceholderContent;
 
 /**
@@ -23,6 +24,7 @@ import com.app.matrix_natali.ui.main.placeholder.PlaceholderContent;
 public class DataListCatFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
+    private static DataObjectCategory[] mData;
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
@@ -33,13 +35,14 @@ public class DataListCatFragment extends Fragment {
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public DataListCatFragment() {
+    public DataListCatFragment(DataObjectCategory[] dataObjectCategories) {
+        mData = dataObjectCategories;
     }
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
     public static DataListCatFragment newInstance(int columnCount) {
-        DataListCatFragment fragment = new DataListCatFragment();
+        DataListCatFragment fragment = new DataListCatFragment(mData);
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
@@ -49,7 +52,6 @@ public class DataListCatFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }

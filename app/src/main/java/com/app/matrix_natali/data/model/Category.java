@@ -1,22 +1,26 @@
 package com.app.matrix_natali.data.model;
 
-public class category {
+public class Category {
 
-    private int id;
+    private int CatId;
     private String CTitle;
 
 
-    public category(int id, String cTitle) {
-        this.id = id;
+    public Category(int CatId, String cTitle) {
+        this.CatId = CatId;
         CTitle = cTitle;
     }
 
+    public Category(Category oldObj){
+        this(oldObj.getId(), oldObj.getCTitle());
+    }
+
     public int getId() {
-        return id;
+        return CatId;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.CatId = id;
     }
 
     public String getCTitle() {

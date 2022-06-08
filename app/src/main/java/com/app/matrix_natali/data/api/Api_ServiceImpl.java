@@ -2,14 +2,12 @@ package com.app.matrix_natali.data.api;
 
 import android.content.Context;
 import android.util.Log;
-
-import com.app.matrix_natali.data.model.DataListObject;
 import com.app.matrix_natali.data.model.DataObject;
+import com.app.matrix_natali.utils.FileFormat;
 import com.google.gson.Gson;
-
-import org.json.JSONObject;
-
-import java.util.List;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.Reader;
 
 public class Api_ServiceImpl implements Api_Service{
 
@@ -17,21 +15,30 @@ public class Api_ServiceImpl implements Api_Service{
     private Context mContext;
     private  Gson gson;
 
+
+
     @Override
-    public List<DataListObject> getDataListObject(Context context) {
+    public DataObject getDataObjectFromServer(Context context) {
         service = new MainService();
         gson = new Gson();
         mContext = context;
         try{
-
-//            String jsonObjectS = service.getJsonSOFromUrl("");
-//            DataObject dataObject = gson.fromJson(jsonObjectS, DataObject.class);
-
-            DataObject dataObject = gson.fromJson(String.valueOf(mContext.getAssets().open("jsonObject.json")),DataObject.class);
-            return dataObject.getDataObject();
+//            return this.getFromServer();
+            return getFromLocalFile();
         }catch (Exception e){
             Log.e("Api_ServiceImpl: ", "getDataListObject: ",e );
             return null;
         }
+    }
+
+    private DataObject getFromLocalFile() throws IOException {
+        BufferedReader reader = FileFormat.getFile(mContext,"jsonObject.json");
+        DataObject result = gson.fromJson(FileFormat.getStringifyFileContent(reader),DataObject.class);
+        return result;
+    }
+
+    private DataObject getFromServer(){
+        Reader jsonObjectS = service.getJsonSOFromUrl("");
+        return gson.fromJson(jsonObjectS, DataObject.class);
     }
 }
