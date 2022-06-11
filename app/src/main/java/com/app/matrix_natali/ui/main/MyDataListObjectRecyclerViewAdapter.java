@@ -44,14 +44,12 @@ public class MyDataListObjectRecyclerViewAdapter extends RecyclerView.Adapter<My
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public final TextView mIdView;
         public final TextView mContentView;
         public PlaceholderItem mItem;
 
         public ViewHolder(FragmentItemBinding binding) {
             super(binding.getRoot());
-            mIdView = binding.itemNumber;
-            mContentView = binding.content;
+            mContentView = binding.text;
         }
 
         @Override

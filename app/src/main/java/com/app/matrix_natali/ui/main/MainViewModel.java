@@ -16,9 +16,9 @@ public class MainViewModel extends ViewModel {
 
     //get list from server
     private DataObject mDataObject;
-    private Api_helper mApi_helper;
-    private Api_Service mApi_service;
     private MainRepository mainRepository;
+    private DataObjectCategory[] dataObjectByCategory;
+    public String[] tabsTitles = {"כל הקטגוריות", "המומלצים", "הפינוקים שלי", "המועדפים"};
 
     public MainViewModel(MainRepository mainRepository){
         this.mainRepository = mainRepository;
@@ -42,6 +42,7 @@ public class MainViewModel extends ViewModel {
     @RequiresApi(api = Build.VERSION_CODES.N)
     public  DataObjectCategory[] getDataObjectByCategory(){
         if(this.mDataObject == null) return null;
+        if(this.dataObjectByCategory != null) return this.dataObjectByCategory;
         DataObjectCategory[] objectsSorted = new DataObjectCategory[this.mDataObject.getDataListCat().length];
         for (int i = 0; i < this.mDataObject.getDataListCat().length; i++) {
             objectsSorted[i] = new DataObjectCategory(new DataListObject[this.mDataObject.getListDataListObject().length]

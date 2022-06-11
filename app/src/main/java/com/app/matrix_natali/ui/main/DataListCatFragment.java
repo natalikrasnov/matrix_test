@@ -28,7 +28,7 @@ public class DataListCatFragment extends Fragment {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
-    // TODO: Customize parameters
+    // TODO: Customize p`arameters
     private int mColumnCount = 1;
 
     /**
@@ -36,17 +36,13 @@ public class DataListCatFragment extends Fragment {
      * fragment (e.g. upon screen orientation changes).
      */
     public DataListCatFragment(DataObjectCategory[] dataObjectCategories) {
-        mData = dataObjectCategories;
+         mData = dataObjectCategories;
     }
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static DataListCatFragment newInstance(int columnCount) {
-        DataListCatFragment fragment = new DataListCatFragment(mData);
-        Bundle args = new Bundle();
-        args.putInt(ARG_COLUMN_COUNT, columnCount);
-        fragment.setArguments(args);
-        return fragment;
+    public static DataListCatFragment newInstance(DataObjectCategory[] dataObjectCategories) {
+        return new DataListCatFragment(mData);
     }
 
     @Override
@@ -60,7 +56,7 @@ public class DataListCatFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_item_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_item_list2, container, false);
 
         // Set the adapter
         if (view instanceof RecyclerView) {
